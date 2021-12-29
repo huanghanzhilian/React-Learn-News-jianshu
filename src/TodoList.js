@@ -5,8 +5,8 @@ class TodoList extends Component {
     super(props)
 
     this.state = {
-      inputValue: 'hello',
-      list: []
+      inputValue: '',
+      list: ['learning english.', 'learning react.']
     }
   }
 
@@ -16,7 +16,35 @@ class TodoList extends Component {
     })
   }
 
+  handleBtnClick () {
+
+    const { inputValue, list } = this.state
+
+    if (!inputValue) return
+
+    this.setState({
+      list: [...list, inputValue],
+      inputValue: ''
+    })
+  }
+
+  handleItemDelete (item, index) {
+    // immutable 概念
+    // state 不允许做任何改变
+    // list 拷贝出来副本
+    // 修改副本
+    // 通过setState 修改
+    const { list } = this.state
+    list.splice(index, 1)
+    this.setState({
+      list
+    })
+  }
+
   render () {
+
+    const { list } = this.state
+
     return (
       <Fragment>
         <div>
@@ -24,11 +52,21 @@ class TodoList extends Component {
             value={ this.state.inputValue }
             onInput={ this.handleInput.bind(this) }
           />
-          <button>submit</button>
+          <button
+            onClick={ this.handleBtnClick.bind(this) }
+          >submit</button>
         </div>
         <ul>
-          <li>learning english.</li>
-          <li>learning react.</li>
+          {
+            list.map((item, index) => {
+              return (
+                <li
+                  key={ index }
+                  onClick={ this.handleItemDelete.bind(this, item, index) }
+                >{ item }</li>
+              )
+            })
+          }
         </ul>
       </Fragment>
     )
