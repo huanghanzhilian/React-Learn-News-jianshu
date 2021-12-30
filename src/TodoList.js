@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import style from './style.css'
 
 class TodoList extends Component {
   constructor (props) {
@@ -48,7 +49,17 @@ class TodoList extends Component {
     return (
       <Fragment>
         <div>
+          {/*
+            多行注释
+            多行注释
+          */}
+          {
+            // 单行注释
+          }
+          <label htmlFor="insertArea">输入内容</label>
           <input
+            id="insertArea"
+            className="input"
             value={ this.state.inputValue }
             onInput={ this.handleInput.bind(this) }
           />
@@ -62,8 +73,9 @@ class TodoList extends Component {
               return (
                 <li
                   key={ index }
+                  dangerouslySetInnerHTML={ { __html: item } }
                   onClick={ this.handleItemDelete.bind(this, item, index) }
-                >{ item }</li>
+                ></li>
               )
             })
           }
