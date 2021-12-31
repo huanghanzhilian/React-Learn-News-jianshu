@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react'
 
 import TodoItem from './TodoItem'
-import Test from './Test'
 
 import style from './style.css'
 
@@ -20,12 +19,7 @@ class TodoList extends Component {
   }
 
   handleInput (el) {
-    /*this.setState({
-      inputValue: el.target.value
-    })*/
-    // ========
-    // 函数设置是异步设置数据
-    // 需要对数据进行保存
+    console.log(el.target === this.input)
     const value = el.target.value
     this.setState(() => ({
       inputValue: value
@@ -38,17 +32,12 @@ class TodoList extends Component {
 
     if (!inputValue) return
 
-    // this.setState({
-    //   list: [...list, inputValue],
-    //   inputValue: ''
-    // })
-
-    // prevState 指的是修改数据之前的数据
-    // 这里prevState等价于this.state
     this.setState((prevState) => ({
       list: [...prevState.list, prevState.inputValue],
       inputValue: ''
-    }))
+    }), () => {
+      console.log(this.ul.querySelectorAll('li').length)
+    })
   }
 
   handleItemDelete (item, index) {
@@ -86,7 +75,6 @@ class TodoList extends Component {
   }
 
   render () {
-    console.log('render')
     const { list, inputValue } = this.state
 
     return (
@@ -98,17 +86,15 @@ class TodoList extends Component {
             className="input"
             value={ this.state.inputValue }
             onInput={ this.handleInput }
+            ref={ (input) => { this.input = input } }
           />
           <button
             onClick={ this.handleBtnClick }
           >submit</button>
         </div>
-        <ul>
+        <ul ref={ (ul) => { this.ul = ul } }>
           { this.renderItem(list) }
         </ul>
-        <Test
-          content={ inputValue }
-        />
       </Fragment>
     )
   }
