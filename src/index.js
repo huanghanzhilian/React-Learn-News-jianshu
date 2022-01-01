@@ -5,7 +5,7 @@ import TodoList from './TodoList'
 
 ReactDOM.render(
   <React.StrictMode>
-    <TodoList />
+    <TodoList test={'123'} />
   </React.StrictMode>,
   document.getElementById('root')
 )

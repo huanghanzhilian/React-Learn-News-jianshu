@@ -6,8 +6,8 @@ import style from './style.css'
 
 class TodoList extends Component {
   constructor (props) {
+    console.log('constructor')
     super(props)
-    // 当组件的state或者props发生改变的时候，render函数会重新执行
     this.state = {
       inputValue: '',
       list: ['learning english.', 'learning react.']
@@ -18,63 +18,12 @@ class TodoList extends Component {
     this.handleItemDelete = this.handleItemDelete.bind(this)
   }
 
-  handleInput (el) {
-    console.log(el.target === this.input)
-    const value = el.target.value
-    this.setState(() => ({
-      inputValue: value
-    }))
-  }
-
-  handleBtnClick () {
-
-    const { inputValue, list } = this.state
-
-    if (!inputValue) return
-
-    this.setState((prevState) => ({
-      list: [...prevState.list, prevState.inputValue],
-      inputValue: ''
-    }), () => {
-      console.log(this.ul.querySelectorAll('li').length)
-    })
-  }
-
-  handleItemDelete (item, index) {
-    // immutable 概念
-    // state 不允许做任何改变
-    // list 拷贝出来副本
-    // 修改副本
-    // 通过setState 修改
-
-    /*const { list } = this.state
-    list.splice(index, 1)
-    this.setState({
-      list
-    })*/
-
-    this.setState((prevState) => {
-      const list = [...prevState.list]
-
-      list.splice(index, 1)
-      return { list }
-    })
-  }
-
-  renderItem (list) {
-    return list.map((item, index) => {
-      return (
-        <TodoItem
-          key={ index }
-          item={ item }
-          index={ index }
-          onItemDelete={ this.handleItemDelete }
-        />
-      )
-    })
+  componentWillMount () {
+    console.log('compomentWillMount')
   }
 
   render () {
+    console.log('render')
     const { list, inputValue } = this.state
 
     return (
@@ -97,6 +46,77 @@ class TodoList extends Component {
         </ul>
       </Fragment>
     )
+  }
+
+  componentDidMount () {
+    console.log('compomentDidMount')
+  }
+
+  componentWillReceiveProps (nextProps) {
+    console.log('componentWillReceiveProps')
+    console.log(nextProps)
+    this.setState({
+      list: []
+    })
+  }
+
+  shouldComponentUpdate (nextProps, nextState) {
+    console.log('shouldComponentUpdate')
+    console.log(nextProps)
+    console.log(nextState)
+    return true
+  }
+
+  componentWillUpdate (nextProps, nextState) {
+    console.log('componentWillUpdate')
+    console.log(nextProps)
+    console.log(nextState)
+  }
+
+  componentDidUpdate (prevProps, prevState) {
+    console.log('componentDidUpdate')
+    console.log(prevProps)
+    console.log(prevState)
+  }
+
+  handleInput (el) {
+    const value = el.target.value
+    this.setState(() => ({
+      inputValue: value
+    }))
+  }
+
+  handleBtnClick () {
+    const { inputValue, list } = this.state
+    if (!inputValue) return
+    this.setState((prevState) => ({
+      list: [...prevState.list, prevState.inputValue],
+      inputValue: ''
+    }), () => {
+      // console.log(this.ul.querySelectorAll('li').length)
+    })
+  }
+
+  handleItemDelete (item, index) {
+    this.setState((prevState) => {
+      const list = [...prevState.list]
+
+      list.splice(index, 1)
+      return { list }
+    })
+  }
+
+  renderItem (list) {
+    return list.map((item, index) => {
+      return (
+        <TodoItem
+          key={ index }
+          item={ item }
+          index={ index }
+          onItemDelete={ this.handleItemDelete }
+        />
+      )
+    })
   }
 }
 

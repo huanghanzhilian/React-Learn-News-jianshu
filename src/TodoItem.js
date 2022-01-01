@@ -24,6 +24,10 @@ class TodoItem extends Component {
     )
   }
 
+  componentWillUnmount () {
+    console.log('componentWillUnmount')
+  }
+
 }
 
 TodoItem.propTypes = {
