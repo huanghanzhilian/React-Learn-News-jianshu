@@ -18,6 +18,7 @@ class TodoList extends Component {
     this.handleItemDelete = this.handleItemDelete.bind(this)
   }
 
+  // 组件即将挂载
   componentWillMount () {
     console.log('compomentWillMount')
   }
