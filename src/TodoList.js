@@ -52,7 +52,9 @@ class TodoList extends Component {
   // 组件被挂载到页面之后自动执行
   componentDidMount () {
     axios.get('/api/todolist').then(res => {
-      console.log(res)
+      this.setState(() => ({
+        list: [...res.data]
+      }))
     }).catch(err => {
       console.log(err)
     })
