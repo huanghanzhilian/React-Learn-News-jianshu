@@ -24,8 +24,17 @@ class TodoItem extends Component {
     )
   }
 
+  // 一个组件要从父组件接受参数
+  // 只要父组件的render函数被执行了，并且这组件之前已经存在于父组件中，组件componentWillReceiveProps就会被执行
+  // 如果这个组件第一次存在父组件中，不会执行
+  componentWillReceiveProps (nextProps) {
+    console.log('child componentWillReceiveProps')
+    console.log(nextProps)
+  }
+
+  // 组件被卸载时自动执行
   componentWillUnmount () {
-    console.log('componentWillUnmount')
+    console.log('child componentWillUnmount')
   }
 
 }

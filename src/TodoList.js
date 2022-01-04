@@ -5,12 +5,12 @@ import TodoItem from './TodoItem'
 import style from './style.css'
 
 class TodoList extends Component {
+  // 当组件创建的时候会执行constructor
   constructor (props) {
-    console.log('constructor')
     super(props)
     this.state = {
       inputValue: '',
-      list: ['learning english.', 'learning react.']
+      list: []
     }
 
     this.handleBtnClick = this.handleBtnClick.bind(this)
@@ -18,11 +18,12 @@ class TodoList extends Component {
     this.handleItemDelete = this.handleItemDelete.bind(this)
   }
 
-  // 组件即将挂载
+  // 在组件即将被挂载到页面的时刻自动执行
   componentWillMount () {
     console.log('compomentWillMount')
   }
 
+  // 当组件的state或者props发生改变的时候，render函数就会重新执行
   render () {
     console.log('render')
     const { list, inputValue } = this.state
@@ -49,18 +50,13 @@ class TodoList extends Component {
     )
   }
 
+  // 组件被挂载到页面之后自动执行
   componentDidMount () {
     console.log('compomentDidMount')
   }
 
-  componentWillReceiveProps (nextProps) {
-    console.log('componentWillReceiveProps')
-    console.log(nextProps)
-    this.setState({
-      list: []
-    })
-  }
-
+  // 组件被隔壁发现之前，会自动执行
+  // 要求返还boolean 来决定组件是否要更新
   shouldComponentUpdate (nextProps, nextState) {
     console.log('shouldComponentUpdate')
     console.log(nextProps)
@@ -68,12 +64,16 @@ class TodoList extends Component {
     return true
   }
 
+  // 组件被更新之前，会自动执行，但是它是在shouldComponentUpdate之后执行
+  // 如果shouldComponentUpdate返回true它才执行
+  // 如果返回false，函数不会执行
   componentWillUpdate (nextProps, nextState) {
     console.log('componentWillUpdate')
     console.log(nextProps)
     console.log(nextState)
   }
 
+  // 组件更新完成之后，它会被自动执行
   componentDidUpdate (prevProps, prevState) {
     console.log('componentDidUpdate')
     console.log(prevProps)
