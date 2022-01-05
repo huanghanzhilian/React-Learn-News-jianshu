@@ -3,15 +3,16 @@ import React, { Component, Fragment } from 'react'
 import 'antd/dist/antd.css'
 import { Input, Button, List } from 'antd';
 
-const data = [
-  'Racing car sprays burning fuel into crowd.',
-  'Japanese princess to wed commoner.',
-  'Australian walks 100km after outback crash.',
-  'Man charged over missing wedding girl.',
-  'Los Angeles battles huge wildfires.',
-];
+import store from './store'
 
 class TodoList extends Component {
+
+  constructor (props) {
+    super(props)
+
+    this.state = store.getState()
+  }
+
   render () {
     return (
       <div
@@ -27,6 +28,7 @@ class TodoList extends Component {
               width: '300px',
               marginRight: '10px'
             }}
+            value={ this.state.inputValue }
           />
           <Button type="primary">提交</Button>
         </div>
@@ -36,7 +38,7 @@ class TodoList extends Component {
             width: '300px'
           }}
           bordered
-          dataSource={data}
+          dataSource={ this.state.list }
           renderItem={item => (
             <List.Item>{item}</List.Item>
           )}
