@@ -11,6 +11,10 @@ class TodoList extends Component {
     super(props)
 
     this.state = store.getState()
+
+    this.handleInputValue = this.handleInputValue.bind(this)
+    this.handleStoreChange = this.handleStoreChange.bind(this)
+    this.handleBtnClick = this.handleBtnClick.bind(this)
   }
 
   render () {
@@ -29,8 +33,12 @@ class TodoList extends Component {
               marginRight: '10px'
             }}
             value={ this.state.inputValue }
+            onChange={ this.handleInputValue }
           />
-          <Button type="primary">提交</Button>
+          <Button
+            type="primary"
+            onClick={ this.handleBtnClick }
+          >提交</Button>
         </div>
         <List
           style={{
@@ -46,6 +54,30 @@ class TodoList extends Component {
       </div>
     )
   }
+
+  componentDidMount () {
+    store.subscribe(this.handleStoreChange)
+  }
+
+  handleInputValue (e) {
+    const action = {
+      type: 'change_input_value',
+      value: e.target.value
+    }
+    store.dispatch(action)
+  }
+
+  handleStoreChange () {
+    this.setState(store.getState())
+  }
+
+  handleBtnClick () {
+    const action = {
+      type: 'add_todo_item'
+    }
+    store.dispatch(action)
+  }
+
 }
 
 
