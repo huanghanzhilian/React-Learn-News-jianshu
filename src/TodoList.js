@@ -1,15 +1,18 @@
 import React, { Component, Fragment } from 'react'
-
-import 'antd/dist/antd.css'
+import axios from 'axios'
 
 import store from './store'
+
 import {
   getInputChangeAction,
   getAddItemAction,
-  getDeleteItemAction
+  getDeleteItemAction,
+  initListAction
 } from './store/actionCreators'
 
 import TodoListUI from './TodoListUI'
+
+import 'antd/dist/antd.css'
 
 class TodoList extends Component {
 
@@ -38,6 +41,9 @@ class TodoList extends Component {
 
   componentDidMount () {
     store.subscribe(this.handleStoreChange)
+    axios.get('/api/todolist').then(res => {
+      store.dispatch(initListAction(res.data))
+    }).catch(err => {})
   }
 
   handleInputValue (e) {
