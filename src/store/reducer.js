@@ -17,6 +17,7 @@ const defaultState = {
  * @return {[type]}        [description]
  */
 export default (state = defaultState, action) => {
+  console.log(action)
   if (action.type === CHANGE_INPUT_VALUE) {
     const newState = JSON.parse(JSON.stringify(state))
     newState.inputValue = action.value

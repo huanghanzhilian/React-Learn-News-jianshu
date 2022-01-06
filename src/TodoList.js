@@ -7,7 +7,7 @@ import {
   getInputChangeAction,
   getAddItemAction,
   getDeleteItemAction,
-  getTodoList
+  getInitList
 } from './store/actionCreators'
 
 import TodoListUI from './TodoListUI'
@@ -42,7 +42,7 @@ class TodoList extends Component {
   componentDidMount () {
     store.subscribe(this.handleStoreChange)
 
-    const action = getTodoList()
+    const action = getInitList()
     store.dispatch(action)
   }
 
