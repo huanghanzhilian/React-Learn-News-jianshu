@@ -1,19 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
 
-import store from './store'
-import TodoList from './TodoList'
-
-const App = (
-  <React.StrictMode>
-    <Provider store={ store }>
-      <TodoList />
-    </Provider>
-  </React.StrictMode>
-)
+import App from './App'
+import GlobalStyle from './style'
 
 ReactDOM.render(
-  App,
+  <React.StrictMode>
+    <App />
+    <GlobalStyle />
+  </React.StrictMode>,
   document.getElementById('root')
 )
