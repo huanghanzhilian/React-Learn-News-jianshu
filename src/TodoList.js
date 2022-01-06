@@ -1,71 +1,51 @@
-import React, { Component, Fragment } from 'react'
-import axios from 'axios'
+import React, { Component } from 'react'
 
-import store from './store'
-
-import {
-  getInputChangeAction,
-  getAddItemAction,
-  getDeleteItemAction,
-  getInitList
-} from './store/actionCreators'
-
-import TodoListUI from './TodoListUI'
-
-import 'antd/dist/antd.css'
+// connect 是 react-redux 第二个核心api
+import { connect } from 'react-redux'
 
 class TodoList extends Component {
 
-  constructor (props) {
-    super(props)
+  handleInputChange (e) {
 
-    this.state = store.getState()
-
-    this.handleInputValue = this.handleInputValue.bind(this)
-    this.handleStoreChange = this.handleStoreChange.bind(this)
-    this.handleBtnClick = this.handleBtnClick.bind(this)
-    this.handleItemDelete = this.handleItemDelete.bind(this)
   }
 
   render () {
     return (
-      <TodoListUI
-        inputValue={ this.state.inputValue }
-        list={ this.state.list }
-        handleInputValue={ this.handleInputValue }
-        handleBtnClick={ this.handleBtnClick }
-        handleItemDelete={ this.handleItemDelete }
-      />
+      <div>
+        <div>
+          <input
+            value={ this.props.inputValue }
+            onChange={ this.props.changeInputValue }
+          />
+          <button>提交</button>
+        </div>
+        <ul>
+          <li>hello</li>
+        </ul>
+      </div>
     )
   }
-
-  componentDidMount () {
-    store.subscribe(this.handleStoreChange)
-
-    const action = getInitList()
-    store.dispatch(action)
-  }
-
-  handleInputValue (e) {
-    const action = getInputChangeAction(e.target.value)
-    store.dispatch(action)
-  }
-
-  handleStoreChange () {
-    this.setState(store.getState())
-  }
-
-  handleBtnClick () {
-    const action = getAddItemAction()
-    store.dispatch(action)
-  }
-
-  handleItemDelete (index) {
-    const action = getDeleteItemAction(index)
-    store.dispatch(action)
-  }
-
 }
 
+// 将store里的inputValue 映射到组件的props.inputValue去
+const mapStateToProps = (state) => {
+  return {
+    inputValue: state.inputValue
+  }
+}
 
-export default TodoList
+// store.dispatch props 映射到组件的props
+const mapDispatchToProps = (dispatch) => {
+  return {
+    changeInputValue(e) {
+      const action = {
+        type: 'chang_input_value',
+        value: e.target.value
+      }
+      dispatch(action)
+    }
+  }
+}
+
+// 导出组件 让在react-redux组件Provider下的TodoList组件和store进行连接
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList)
