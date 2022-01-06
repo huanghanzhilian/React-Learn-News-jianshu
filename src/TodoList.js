@@ -5,22 +5,28 @@ import { connect } from 'react-redux'
 
 class TodoList extends Component {
 
-  handleInputChange (e) {
-
-  }
-
   render () {
+    const { list, inputValue, changeInputValue, handleClick, handleDeleteItem } = this.props
     return (
       <div>
         <div>
           <input
             value={ this.props.inputValue }
-            onChange={ this.props.changeInputValue }
+            onChange={ changeInputValue }
           />
-          <button>提交</button>
+          <button onClick={ handleClick }>提交</button>
         </div>
         <ul>
-          <li>hello</li>
+          {
+            list.map((item, index) => {
+              return (
+                <li
+                  key={ index }
+                  onClick={ handleDeleteItem }
+                >{ item }</li>
+              )
+            })
+          }
         </ul>
       </div>
     )
@@ -30,20 +36,34 @@ class TodoList extends Component {
 // 将store里的inputValue 映射到组件的props.inputValue去
 const mapStateToProps = (state) => {
   return {
-    inputValue: state.inputValue
+    inputValue: state.inputValue,
+    list: state.list
   }
 }
 
 // store.dispatch props 映射到组件的props
 const mapDispatchToProps = (dispatch) => {
   return {
-    changeInputValue(e) {
+    changeInputValue (e) {
       const action = {
         type: 'chang_input_value',
         value: e.target.value
       }
       dispatch(action)
-    }
+    },
+    handleClick () {
+      const action = {
+        type: 'add_todo_item'
+      }
+      dispatch(action)
+    },
+    handleDeleteItem (index) {
+      const action = {
+        type: 'delete_todo_item',
+        index
+      }
+      dispatch(action)
+    },
   }
 }
 
