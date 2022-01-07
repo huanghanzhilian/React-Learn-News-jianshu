@@ -7,6 +7,7 @@ class App extends Component {
     return (
       <div>
         <Header />
+        <span className="iconfont icon-Magnifier"></span>
       </div>
     )
   }
