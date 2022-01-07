@@ -1,4 +1,5 @@
-import React, { Component, useRef } from 'react'
+import React from 'react'
+import { connect } from 'react-redux'
 import { CSSTransition } from 'react-transition-group'
 
 import {
@@ -12,72 +13,70 @@ import {
   SearchWrapper
 } from './style'
 
-class Header extends Component {
+const Header = (props) => {
+  const nodeRef = React.useRef(null)
+  return (
+    <HeaderWrapper>
+      <Logo />
+      <Nav>
+        <NavItem className="left active">首页</NavItem>
+        <NavItem className="left">下载App</NavItem>
+        <NavItem className="right">登陆</NavItem>
+        <NavItem className="right">
+          <span className="iconfont">&#xe636;</span>
+        </NavItem>
+        <SearchWrapper>
+          <CSSTransition
+            nodeRef={ nodeRef }
+            in={ props.focused }
+            timeout={400}
+            classNames="slide"
+          >
+            <NavSearch
+              ref={nodeRef}
+              className={ props.focused ? 'focused' : ''}
+              onFocus={ props.handleInputFocus }
+              onBlur={ props.handleInputBlur }
+            />
+          </CSSTransition>
+          <span className={ props.focused ? 'iconfont focused' : 'iconfont'}>&#xe62d;</span>
+        </SearchWrapper>
+      </Nav>
+      <Addition>
+        <Button className="writting">
+          <span className="iconfont">&#xe600;</span>
+          写文章
+        </Button>
+        <Button className="reg">注册</Button>
+      </Addition>
+    </HeaderWrapper>
+  )
+}
 
-  constructor (props) {
-    super(props)
+const mapStateToProps = (state) => {
+  return {
+    focused: state.focused
+  }
+}
 
-    this.state = {
-      focused: false
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleInputFocus () {
+      const action = {
+        type: 'search_focus'
+      }
+      dispatch(action)
+    },
+
+    handleInputBlur () {
+      const action = {
+        type: 'search_blur'
+      }
+      dispatch(action)
     }
 
-    this.handleInputFocus = this.handleInputFocus.bind(this)
-    this.handleInputBlur = this.handleInputBlur.bind(this)
-  }
-
-  render () {
-    const nodeRef = React.createRef(null)
-
-    return (
-      <HeaderWrapper>
-        <Logo />
-        <Nav>
-          <NavItem className="left active">首页</NavItem>
-          <NavItem className="left">下载App</NavItem>
-          <NavItem className="right">登陆</NavItem>
-          <NavItem className="right">
-            <span className="iconfont">&#xe636;</span>
-          </NavItem>
-          <SearchWrapper>
-            <CSSTransition
-              nodeRef={nodeRef}
-              in={this.state.focused}
-              timeout={400}
-              classNames="slide"
-            >
-              <NavSearch
-                ref={nodeRef}
-                className={ this.state.focused ? 'focused' : ''}
-                onFocus={ this.handleInputFocus }
-                onBlur={ this.handleInputBlur }
-              />
-            </CSSTransition>
-            <span className={ this.state.focused ? 'iconfont focused' : 'iconfont'}>&#xe62d;</span>
-          </SearchWrapper>
-        </Nav>
-        <Addition>
-          <Button className="writting">
-            <span className="iconfont">&#xe600;</span>
-            写文章
-          </Button>
-          <Button className="reg">注册</Button>
-        </Addition>
-      </HeaderWrapper>
-    )
-  }
-
-  handleInputFocus () {
-    this.setState({
-      focused: true
-    })
-  }
-
-  handleInputBlur () {
-    this.setState({
-      focused: false
-    })
   }
 }
 
 
-export default Header
+export default connect(mapStateToProps, mapDispatchToProps)(Header)

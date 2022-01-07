@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
+import { Provider } from 'react-redux'
+
+import store from './store'
 
 import Header from './common/Header'
 
 class App extends Component {
   render () {
     return (
-      <div>
+      <Provider store={store}>
         <Header />
-        <span className="iconfont icon-Magnifier"></span>
-      </div>
+      </Provider>
     )
   }
 }
