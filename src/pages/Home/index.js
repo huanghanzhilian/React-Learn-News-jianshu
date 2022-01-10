@@ -14,7 +14,11 @@ class HomePage extends Component {
     return (
       <HomeWrapper>
         <HomeLift>
-          <img className="banner-img" src="https://immutable-js.com/Immutable-Data-and-React-YouTube.png" />
+          <img
+            className="banner-img"
+            src="https://immutable-js.com/Immutable-Data-and-React-YouTube.png"
+            alt=""
+          />
           <Topic />
           <List />
         </HomeLift>
