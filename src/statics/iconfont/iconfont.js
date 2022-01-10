@@ -1,14 +1,14 @@
 import { createGlobalStyle } from 'styled-components'
-import woff2IconFont from './iconfont.woff2'
-import woffIconFont from './iconfont.woff'
-import ttfIconFont from './iconfont.ttf'
 
 const GlobalIconFont = createGlobalStyle`
   @font-face {
-    font-family: 'iconfont';
-    src: url('${woff2IconFont}') format('woff2'),
-         url('${woffIconFont}') format('woff'),
-         url('${ttfIconFont}') format('truetype');
+    font-family: 'iconfont';  /* project id 3123731 */
+    src: url('');
+    src: url('?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_3123731_12vqb6j0xsoi.woff2') format('woff2'),
+    url('//at.alicdn.com/t/font_3123731_12vqb6j0xsoi.woff') format('woff'),
+    url('//at.alicdn.com/t/font_3123731_12vqb6j0xsoi.ttf') format('truetype'),
+    url('#iconfont') format('svg');
   }
 
   .iconfont {
