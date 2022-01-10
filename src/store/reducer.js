@@ -1,12 +1,11 @@
-// import { combineReducers } from 'redux'
-// 使用immutable
 import { combineReducers } from 'redux-immutable'
 
-// 将reducer起个别迷名hearderReducer
 import { reducer as hearderReducer } from '../common/Header/store'
+import { reducer as homePageReducer } from '../pages/Home/store'
 
 const reducer = combineReducers({
-  header: hearderReducer
+  header: hearderReducer,
+  home: homePageReducer
 })
 
 export default reducer
