@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import store from './store'
 
@@ -9,7 +10,15 @@ class App extends Component {
   render () {
     return (
       <Provider store={store}>
-        <Header />
+        <div>
+          <Header />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={ <div>home</div> }></Route>
+              <Route path="/detail" element={ <div>detail</div> }></Route>
+            </Routes>
+          </BrowserRouter>
+        </div>
       </Provider>
     )
   }
