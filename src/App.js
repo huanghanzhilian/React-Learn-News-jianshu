@@ -6,6 +6,9 @@ import store from './store'
 
 import Header from './common/Header'
 
+import HomePage from './pages/Home'
+import DetailPage from './pages/Detail'
+
 class App extends Component {
   render () {
     return (
@@ -14,8 +17,8 @@ class App extends Component {
           <Header />
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={ <div>home</div> }></Route>
-              <Route path="/detail" element={ <div>detail</div> }></Route>
+              <Route path="/" element={ <HomePage /> }></Route>
+              <Route path="/detail" element={ <DetailPage /> }></Route>
             </Routes>
           </BrowserRouter>
         </div>
