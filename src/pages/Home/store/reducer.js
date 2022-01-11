@@ -30,6 +30,34 @@ const defaultState = fromJS({
     title: '女孩一定要洁身自爱',
     desc: '文婷与男友恋爱8年，从小青梅竹马，如今文婷怀有5个月的身孕，男友送她回娘家养胎，却没想到，半个月后，男友竟与富家女闪婚了。 得知男友结婚当天，发',
     imgUrl: 'https://lupic.cdn.bcebos.com/20200412/3063506837_14_800_572.jpg'
+  }],
+  recommendList: [{
+    id: 1,
+    imgUrl: 'http://developers.cheerspublishing.cn/uploads/article/50b8eef1-6643-44a7-aaa8-fcb469d51cff.png'
+  }, {
+    id: 2,
+    imgUrl: 'http://developers.cheerspublishing.cn/uploads/article/2a82af91-06e2-4419-8969-12b76cc5ad9c.png'
+  }],
+  writerList: [{
+    id: 1,
+    imgUrl: 'http://developers.cheerspublishing.cn/uploads/article/ec212e01-906e-415e-af1b-df2a02dbc9f1.png',
+    title: '吴晓布',
+    desc: '写了744.4k字 · 25.3k喜欢'
+  }, {
+    id: 2,
+    imgUrl: 'http://developers.cheerspublishing.cn/uploads/article/b181c1e3-c930-4a8f-9597-f4f22fc9e6d6.png',
+    title: '茶点故事',
+    desc: '写了741.3k字 · 16.5k喜欢'
+  }, {
+    id: 3,
+    imgUrl: 'http://developers.cheerspublishing.cn/uploads/article/ec212e01-906e-415e-af1b-df2a02dbc9f1.png',
+    title: '吴晓布',
+    desc: '写了744.4k字 · 25.3k喜欢'
+  }, {
+    id: 4,
+    imgUrl: 'http://developers.cheerspublishing.cn/uploads/article/b181c1e3-c930-4a8f-9597-f4f22fc9e6d6.png',
+    title: '茶点故事',
+    desc: '写了741.3k字 · 16.5k喜欢'
   }]
 })
 

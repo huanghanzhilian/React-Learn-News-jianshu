@@ -19,8 +19,7 @@ export const HomeLift = styled.div`
 
 export const HomeRight = styled.div`
   float: right;
-  width: 240px;
-  background-color: green;
+  width: 280px;
 `
 
 export const TopicWrapper = styled.div`
@@ -73,5 +72,66 @@ export const ListInfo = styled.div`
     line-height: 24px;
     font-size: 13px;
     color: #999;
+  }
+`
+
+export const RecommendWrapper = styled.div`
+  margin: 30px 0;
+  width: 280px;
+`
+export const RecommendItem = styled.div`
+  margin-bottom: 5px;
+  width: 280px;
+  height: 50px;
+  background-image: url(${(props) => props.imgUrl});
+  background-repeat: no-repeat;
+  background-size: contain;
+`
+
+export const WriterWrapper = styled.div`
+  overflow: hidden;
+  width: 278px;
+  border: 1px solide #dcdcdc;
+  border-radius: 3px;
+`
+
+export const WriterHeader = styled.div`
+  overflow: hidden;
+  line-height: 30px;
+  font-size: 14px;
+  color: #969696;
+  .recom-writer {
+    float: left;
+  }
+  .recom-operator {
+    float: right;
+  }
+  .spin {
+    font-size: 12px;
+    margin-right: 5px;
+  }
+`
+
+export const WriterItem = styled.div`
+  margin-bottom: 20px;
+  overflow: hidden;
+  .pic {
+    float: left;
+    margin-right: 10px;
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
+    border: 1px solid #ddd;
+  }
+  .writer-info {}
+  .writer-name {
+    line-height: 28px;
+    font-size: 14px;
+    color: #333;
+  }
+  .writer-desc {
+    margin-top: 2px;
+    font-size: 12px;
+    color: #969696;
   }
 `
