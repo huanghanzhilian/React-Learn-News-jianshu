@@ -135,3 +135,15 @@ export const WriterItem = styled.div`
     color: #969696;
   }
 `
+
+export const LoadMore = styled.div`
+  margin: 30px 0;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  background-color: #a5a5a5;
+  text-align: center;
+  border-radius: 20px;
+  color: #fff;
+  cursor: pointer;
+`

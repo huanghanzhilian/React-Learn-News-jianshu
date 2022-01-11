@@ -1,19 +1,23 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 
+import { actionCreators } from '../store'
+
 import {
-        ListItem,
-        ListInfo } from '../style'
+  ListItem,
+  ListInfo,
+  LoadMore
+} from '../style'
 
 class List extends Component {
   render () {
-    const { articleList } = this.props
+    const { articleList, getMoreList, page } = this.props
     return (
       <Fragment>
         {
-          articleList.map(item => (
+          articleList.map((item, index) => (
             <ListItem
-              key={ item.get('id') }
+              key={ index }
             >
               <img
                 className="article-pic"
@@ -27,21 +31,22 @@ class List extends Component {
             </ListItem>
           ))
         }
+        <LoadMore onClick={ () => { getMoreList(page) } }>加载更多</LoadMore>
       </Fragment>
     )
   }
 }
 
 
-const mapStateToProps = (state) => {
-  return {
-    articleList: state.getIn(['home', 'articleList'])
+const mapStateToProps = (state) => ({
+  articleList: state.getIn(['home', 'articleList']),
+  page: state.getIn(['home', 'articlePage'])
+})
+const mapDispatchToProps = (dispatch) => ({
+  getMoreList (page) {
+    dispatch(actionCreators.getMoreList(page))
   }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {}
-}
+})
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(List)
