@@ -16,8 +16,8 @@ class App extends Component {
         <BrowserRouter>
           <Header />
           <Routes>
-            <Route path="/" element={ <HomePage /> }></Route>
-            <Route path="/detail" element={ <DetailPage /> }></Route>
+            <Route path="/" element={ <HomePage /> } />
+            <Route path="/detail" element={ <DetailPage /> } />
           </Routes>
         </BrowserRouter>
       </Provider>

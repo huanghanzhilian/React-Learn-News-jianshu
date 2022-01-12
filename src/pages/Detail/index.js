@@ -1,5 +1,6 @@
-import React, { PureComponent } from 'react'
-import { connect } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 
 import { actionCreators } from './store'
 
@@ -9,35 +10,20 @@ import {
   Content
 } from './style'
 
-class DetailPage extends PureComponent {
-  render () {
-
-    const { title, content } = this.props
-
-    return (
-      <DetailWrapper>
-        <Header>{ title }</Header>
-        <Content dangerouslySetInnerHTML={{ __html: content }} />
-      </DetailWrapper>
-    )
-  }
-
-  componentDidMount () {
-    this.props.getDetail()
-  }
-
+const DetailPage = (props) => {
+  const [searchParams] = useSearchParams();
+  const dispatch = useDispatch()
+  const title = useSelector(state => state.getIn(['detail', 'title']))
+  const content = useSelector(state => state.getIn(['detail', 'content']))
+  useEffect(() => {
+    dispatch(actionCreators.getDetail(searchParams.get("id") || ''))
+  }, [])
+  return (
+    <DetailWrapper>
+       <Header>{ title }</Header>
+       <Content dangerouslySetInnerHTML={{ __html: content }} />
+     </DetailWrapper>
+  )
 }
 
-const mapState = (state) => ({
-  title: state.getIn(['detail', 'title']),
-  content: state.getIn(['detail', 'content'])
-})
-
-const mapDispatch = (dispatch) => ({
-  getDetail () {
-    dispatch(actionCreators.getDetail())
-  }
-})
-
-
-export default connect(mapState, mapDispatch)(DetailPage)
+export default DetailPage
