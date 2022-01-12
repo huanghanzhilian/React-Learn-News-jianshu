@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 
+import { actionCreators } from './store'
+
 import {
   DetailWrapper,
   Header,
@@ -19,6 +21,11 @@ class DetailPage extends PureComponent {
       </DetailWrapper>
     )
   }
+
+  componentDidMount () {
+    this.props.getDetail()
+  }
+
 }
 
 const mapState = (state) => ({
@@ -26,8 +33,10 @@ const mapState = (state) => ({
   content: state.getIn(['detail', 'content'])
 })
 
-const mapDispatch = (state) => ({
-
+const mapDispatch = (dispatch) => ({
+  getDetail () {
+    dispatch(actionCreators.getDetail())
+  }
 })
 
 
