@@ -7,7 +7,8 @@ const defaultState = fromJS({
   articleList: [],
   recommendList: [],
   writerList: [],
-  articlePage: 1
+  articlePage: 1,
+  showScroll: false
 })
 
 const reducer = (state = defaultState, action) => {
@@ -24,6 +25,8 @@ const reducer = (state = defaultState, action) => {
         articlePage: action.nextPage,
         articleList: state.get('articleList').concat(action.list)
       })
+    case constants.TOGGLE_SCROLL_TOP:
+      return state.set('showScroll', action.status)
     default:
       return state
   }
