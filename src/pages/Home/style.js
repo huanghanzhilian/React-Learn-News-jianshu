@@ -66,7 +66,8 @@ export const ListInfo = styled.div`
   .title {
     line-height: 27px;
     font-size: 18px;
-    font-weight: bold
+    font-weight: bold;
+    color: #333;
   }
   .desc {
     line-height: 24px;

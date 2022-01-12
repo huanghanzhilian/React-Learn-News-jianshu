@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
 import { connect } from 'react-redux'
 
@@ -16,14 +16,13 @@ import {
   BackTop
 } from './style'
 
-class HomePage extends Component {
+class HomePage extends PureComponent {
 
   handleScrollTop () {
     window.scrollTo(0, 0)
   }
 
   render () {
-
     const { showScroll } = this.props
 
     return (
@@ -71,10 +70,8 @@ const mapDispatch = (dispatch) => ({
 
   changeScrollTopShow (e) {
     if (document.documentElement.scrollTop > 400) {
-      console.log(1)
       dispatch(actionCreators.toggleTopShow(true))
     } else {
-      console.log(0)
       dispatch(actionCreators.toggleTopShow(false))
     }
   }
