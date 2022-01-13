@@ -9,6 +9,7 @@ import Header from './common/Header'
 import HomePage from './pages/Home'
 import DetailPage from './pages/Detail'
 import Login from './pages/Login'
+import Write from './pages/Write'
 
 class App extends Component {
   render () {
@@ -20,6 +21,7 @@ class App extends Component {
             <Route path="/" element={ <HomePage /> } />
             <Route path="/detail" element={ <DetailPage /> } />
             <Route path="/login" element={ <Login /> } />
+            <Route path="/write" element={ <Write /> } />
           </Routes>
         </BrowserRouter>
       </Provider>
