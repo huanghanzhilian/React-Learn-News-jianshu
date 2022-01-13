@@ -7,7 +7,7 @@ import store from './store'
 import Header from './common/Header'
 
 import HomePage from './pages/Home'
-import DetailPage from './pages/Detail'
+import DetailPage from './pages/Detail/loadable'
 import Login from './pages/Login'
 import Write from './pages/Write'
 
